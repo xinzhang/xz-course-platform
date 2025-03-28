@@ -1,4 +1,4 @@
-import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core"
+import { boolean, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createdAt, id, updatedAt } from "../schemaHelpers"
 import { relations } from "drizzle-orm"
 import { UserCourseAccessTable } from "./userCourseAccess"
@@ -17,6 +17,7 @@ export const UserTable = pgTable("users", {
   deletedAt: timestamp({ withTimezone: true }),
   createdAt,
   updatedAt,
+  active: boolean().notNull().default(true),
 })
 
 export const UserRelationships = relations(UserTable, ({ many }) => ({

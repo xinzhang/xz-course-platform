@@ -8,6 +8,13 @@
       "when": 1742899500353,
       "tag": "0000_silent_talisman",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1743166850491,
+      "tag": "0001_absurd_puma",
+      "breakpoints": true
     }
   ]
 }

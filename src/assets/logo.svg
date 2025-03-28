@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <!-- Book icon representing courses -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C3.44772 3 3 3.44772 3 4V15C3 15.5523 3.44772 16 4 16H15C15.5523 16 16 15.5523 16 15V4C16 3.44772 15.5523 3 15 3H4ZM5 5H14V14H5V5Z" fill="#4A90E2"/>
+  <path d="M6 7H13V8H6V7ZM6 9H11V10H6V9ZM6 11H12V12H6V11Z" fill="#fff"/>
+</svg>
