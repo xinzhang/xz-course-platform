@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Suspense } from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,10 @@ export default function RootLayout({
     <Suspense fallback={<div>Loading...</div>}>
       <ClerkProvider>
         <html lang='en'>
-          <body className='antialiased'>{children}</body>
+          <body className='antialiased'>
+            <Toaster />
+            {children}
+          </body>
         </html>
       </ClerkProvider>
     </Suspense>

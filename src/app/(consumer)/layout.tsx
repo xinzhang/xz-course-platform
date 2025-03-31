@@ -30,7 +30,7 @@ function Navbar() {
             height={20}
             alt='xz courses platform demo'
           />
-          <span className='pl-4 text-xl font-bold'>Courses</span>
+          <span className='pl-4 text-xl font-bold'>Wowdemy</span>
         </Link>
         <SignedIn>
           <AdminLink />
