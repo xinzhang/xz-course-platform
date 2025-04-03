@@ -9,21 +9,29 @@ import { Input } from "@/components/ui/input";
 import { RequiredLabelIcon } from "@/components/RequiredLabelIcon";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { createCourseAction } from "../actions/courses";
+import { createCourseAction, updateCourseAction } from "../actions/courses";
 import { actionToast } from "@/hooks/use-toast";
 
-export default function CourseForm() {
+export type CourseFormProps = {
+  course?: {
+    id: string,
+    name: string,
+    description: string,
+  }
+}
+export default function CourseForm({ course }: CourseFormProps) {
   const form = useForm<z.infer<typeof courseSchema>>({
     resolver: zodResolver(courseSchema),
     defaultValues: {
-      name: "",
-      description: "",
+      name: course?.name ?? "",
+      description: course?.description ?? "",
     },
   });
   
   async function onSubmit(values: z.infer<typeof courseSchema>) {
-   const data = await createCourseAction(values);
-   actionToast({ actionData: data })
+    const action = course == null ? createCourseAction : updateCourseAction.bind(null, course.id)
+    const data = await action(values);
+    actionToast({ actionData: data })
   }
   return (
     <Form {...form}>

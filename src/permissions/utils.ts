@@ -20,4 +20,8 @@ export function canDeleteCourses(user: { role?: UserRole }) {
   return user.role === "admin"
 }
 
+export function canUpdateCourses(user: { role?: UserRole }) {
+  return user.role === "admin"
+}
+
 

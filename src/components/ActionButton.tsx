@@ -26,6 +26,7 @@ export function ActionButton({
 
     if (requireAreYouSure) {
       return (
+        // open check is important to keep dialog open when loading
         <AlertDialog open={isLoading ? true : undefined}>
           <AlertDialogTrigger asChild>
             <Button {...props} />
