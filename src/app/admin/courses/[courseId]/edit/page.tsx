@@ -1,4 +1,3 @@
-import { ActionButton } from "@/components/ActionButton";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,14 +7,12 @@ import { db } from "@/drizzle/db";
 import { CourseSectionTable, CourseTable, LessonTable } from "@/drizzle/schema";
 import CourseForm from "@/features/courses/components/CourseForm";
 import { getCourseIdTag } from "@/features/courses/db/cache/courses";
-import { deleteCourseSectionAction } from "@/features/courseSections/actions/sections";
 import SectionFormDialog from "@/features/courseSections/components/SectionFormDialog";
 import { SortableSectionList } from "@/features/courseSections/components/SrotableSectionList";
 import { getCourseSectionCourseTag } from "@/features/courseSections/db/cache";
 import { getLessonCourseTag } from "@/features/lessons/db/cache/lessons";
-import { cn } from "@/lib/utils";
 import { asc, eq } from "drizzle-orm";
-import { EyeClosedIcon, EyeIcon, PlusIcon, Trash2Icon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 import { notFound } from "next/navigation";
 
@@ -50,46 +47,10 @@ export default async function CourseEditPage({
               </SectionFormDialog>
             </CardHeader>
             <CardContent>
-              {/* <SortableSectionList
+              <SortableSectionList
                 courseId={course.id}
                 sections={course.courseSections}
-              /> */}
-              {course.courseSections.map((section) => {
-                return (
-                  <div key={section.id} className='flex items-center gap-1'>
-                    <div
-                      className={cn(
-                        "contents",
-                        section.status === "private" && "text-muted-foreground"
-                      )}
-                    >
-                      {section.status === "private" && (
-                        <EyeClosedIcon className='size-4' />
-                      )}
-                      {section.status === "public" && (
-                        <EyeIcon className='size-4' />
-                      )}
-                    </div>
-                    {section.name}
-                    <SectionFormDialog courseId={course.id} section={section}>
-                      <DialogTrigger asChild>
-                        <Button variant='outline' size='sm' className='ml-auto'>
-                          Edit
-                        </Button>
-                      </DialogTrigger>
-                    </SectionFormDialog>
-                    <ActionButton
-                      variant='destructiveOutline'
-                      requireAreYouSure
-                      action={deleteCourseSectionAction.bind(null, section.id)}
-                      size='sm'
-                    >
-                      <Trash2Icon />
-                      <span className='sr-only'>Delete</span>
-                    </ActionButton>
-                  </div>
-                );
-              })}
+              />
             </CardContent>
           </Card>
         </TabsContent>

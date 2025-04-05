@@ -21,7 +21,7 @@ function Navbar() {
       <nav className='flex gap-4 container'>
         <div className="mr-auto flex items-center gap-2">
           <Link className='text-lg hover:underline' href='/'>
-            Courses
+            Wowdemy
           </Link>
           <Badge className="hover: cursor-default">Admin</Badge>
         </div>

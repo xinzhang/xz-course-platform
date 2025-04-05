@@ -9,7 +9,10 @@ export async function insertCourse(data: typeof CourseTable.$inferInsert) {
     .values(data)
     .returning()
 
-  if (newCourse == null) throw new Error("Failed to create course")
+  if (newCourse == null) {
+    console.log("Failed to create course");
+    throw new Error("Failed to create course");
+  }
   revalidateCourseCache(newCourse.id)
 
   return newCourse
