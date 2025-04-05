@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/services/clerk";
-import { canAccessAdminPages } from "@/permissions/utils";
+import { canAccessAdminPages } from "@/permissions/general";
 
 export default function ConsumerLayout({
   children,

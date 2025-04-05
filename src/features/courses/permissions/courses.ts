@@ -1,12 +1,4 @@
-import { UserRole } from "@/drizzle/schema";
-
-export function canAccessAdminPages(user: { role?: UserRole }) {
-  return user.role === "admin"
-}
-
-export function canAccessConsumerPages(user: { role?: UserRole }) {
-  return user.role === "user"
-}
+import { UserRole } from "@/drizzle/schema"
 
 export function canCreateCourses(user: { role?: UserRole }) {
   return user.role === "admin"
@@ -23,5 +15,4 @@ export function canDeleteCourses(user: { role?: UserRole }) {
 export function canUpdateCourses(user: { role?: UserRole }) {
   return user.role === "admin"
 }
-
 
