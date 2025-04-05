@@ -10,9 +10,12 @@ import { getCourseIdTag } from "@/features/courses/db/cache/courses";
 import SectionFormDialog from "@/features/courseSections/components/SectionFormDialog";
 import { SortableSectionList } from "@/features/courseSections/components/SrotableSectionList";
 import { getCourseSectionCourseTag } from "@/features/courseSections/db/cache";
+import LessonFormDialog from "@/features/lessons/components/LessonFormDialog";
+import { SortableLessonList } from "@/features/lessons/components/SortableLessonList";
 import { getLessonCourseTag } from "@/features/lessons/db/cache/lessons";
+import { cn } from "@/lib/utils";
 import { asc, eq } from "drizzle-orm";
-import { PlusIcon } from "lucide-react";
+import { EyeClosed, EyeIcon, PlusIcon } from "lucide-react";
 import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 import { notFound } from "next/navigation";
 
@@ -53,6 +56,40 @@ export default async function CourseEditPage({
               />
             </CardContent>
           </Card>
+          <hr className='my-4' />
+          {course.courseSections.map((section) =>(
+            <Card key={section.id}>
+              <CardHeader className='flex items-center flex-row justify-between gap-4'>
+                <CardTitle
+                  className={cn(
+                    "flex items-center gap-2",
+                    section.status === "private" && "text-muted-foreground"
+                  )}
+                >
+                  {section.status === "private" && <EyeClosed />}
+                  {section.status === "public" && <EyeIcon />}
+                  {section.name}
+                </CardTitle>
+                <LessonFormDialog
+                  defaultSectionId={section.id}
+                  sections={course.courseSections}
+                >
+                  <DialogTrigger asChild>
+                    <Button variant='outline'>
+                      <PlusIcon />
+                      New Lesson
+                    </Button>
+                  </DialogTrigger>
+                </LessonFormDialog>
+              </CardHeader>
+              <CardContent>
+                <SortableLessonList
+                  sections={course.courseSections}
+                  lessons={section.lessons}
+                />
+              </CardContent>
+            </Card>
+          ))}
         </TabsContent>
         <TabsContent value='details'>
           <Card>
