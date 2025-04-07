@@ -8,8 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatPlural } from "@/lib/formatters";
-import { formatPrice } from "@/lib/format";
+import { formatPlural, formatPrice } from "@/lib/formatters";
 import { EyeIcon, LockIcon, Trash2Icon } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -51,17 +50,17 @@ export function ProductTable({ products }: ProductTableProps) {
         {products.map((product) => (
           <TableRow key={product.id}>
             <TableCell>
-              <div className='flex items-center gap-4'>              
-                <Image 
+              <div className='flex items-center gap-4'>
+                <Image
                   className='rounded object-cover size-12'
                   src={product.imageUrl}
                   alt={product.name}
                   width={192}
                   height={192}
-                />                
+                />
                 <div className='flex flex-col gap-1'>
                   <div className='font-semibold'>{product.name}</div>
-                  <div className="text-muted-foreground">
+                  <div className='text-muted-foreground'>
                     {formatPlural(product.coursesCount, {
                       singular: "course",
                       plural: "courses",
@@ -73,10 +72,10 @@ export function ProductTable({ products }: ProductTableProps) {
             </TableCell>
             <TableCell>{product.customersCount}</TableCell>
             <TableCell>
-              <Badge className="inline-flex items-center gap-2">
+              <Badge className='inline-flex items-center gap-2'>
                 {getStatusIcon(product.status)} {product.status}
               </Badge>
-            </TableCell>           
+            </TableCell>
             <TableCell>
               <div className='flex gap-2'>
                 <Button asChild>
@@ -103,7 +102,7 @@ function getStatusIcon(status: ProductStatus) {
   const Icon = {
     public: EyeIcon,
     private: LockIcon,
-  }[status]
+  }[status];
 
-  return <Icon className="size-4" />
+  return <Icon className='size-4' />;
 }
