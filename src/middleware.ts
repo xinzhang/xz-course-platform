@@ -2,8 +2,8 @@ import { clerkMiddleware } from "@clerk/nextjs/server";
 import arcjet, { detectBot, shield, slidingWindow } from "@arcjet/next"
 import { createRouteMatcher } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
-import { setUserCountryHeader } from "./lib/userCountryHeader";
-import { NextResponse } from "next/server";
+// import { setUserCountryHeader } from "./lib/userCountryHeader";
+// import { NextResponse } from "next/server";
 import { env } from "./data/env/server";
 
 const isPublicRoute = createRouteMatcher([
@@ -35,15 +35,15 @@ const aj = arcjet({
 })
 
 export default clerkMiddleware(async (auth, req)=> {
-  const decision = await aj.protect(
-    env.TEST_IP_ADDRESS
-      ? { ...req, ip: env.TEST_IP_ADDRESS, headers: req.headers }
-      : req
-  )
+  // const decision = await aj.protect(
+  //   env.TEST_IP_ADDRESS
+  //     ? { ...req, ip: env.TEST_IP_ADDRESS, headers: req.headers }
+  //     : req
+  // )
 
-  if (decision.isDenied()) {
-    return new NextResponse(null, { status: 403 })
-  }
+  // if (decision.isDenied()) {
+  //   return new NextResponse(null, { status: 403 })
+  // }
 
   if (isAdminRoute(req)) {
     const user = await auth.protect()
@@ -56,12 +56,12 @@ export default clerkMiddleware(async (auth, req)=> {
     await auth.protect()
   }
 
-  if (!decision.ip.isVpn() && !decision.ip.isProxy()) {
-    const headers = new Headers(req.headers)
-    setUserCountryHeader(headers, decision.ip.country)
+  // if (!decision.ip.isVpn() && !decision.ip.isProxy()) {
+  //   const headers = new Headers(req.headers)
+  //   setUserCountryHeader(headers, decision.ip.country)
 
-    return NextResponse.next({ request: { headers } })
-  }
+  //   return NextResponse.next({ request: { headers } })
+  // }
 });
 
 export const config = {
