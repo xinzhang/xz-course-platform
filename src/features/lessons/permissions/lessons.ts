@@ -1,4 +1,5 @@
-import { UserRole } from "@/drizzle/schema"
+import { LessonTable, UserRole } from "@/drizzle/schema"
+import { eq, or } from "drizzle-orm"
 
 export function canCreateLessons(user: { role?: UserRole }) {
   return user.role === "admin"
@@ -32,3 +33,8 @@ export function canAccessLesson(
   if (!hasAccess) return false
   return lessonStatus !== "private" || hasAccess
 } 
+
+export const wherePublicLessons = or(
+  eq(LessonTable.status, "public"),
+  eq(LessonTable.status, "preview")
+)
