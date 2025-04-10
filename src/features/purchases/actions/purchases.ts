@@ -3,9 +3,9 @@
 import { getCurrentUser } from "@/services/clerk"
 import { canRefundPurchases } from "../permissions/purchases"
 import { db } from "@/drizzle/db"
-import { eq } from "drizzle-orm"
 import { updatePurchase } from "../db/purchases"
-import { PurchaseTable } from "@/drizzle/schema"
+import { revokeUserCourseAccess } from "@/features/courses/db/userCourseAccess"
+import { stripeServerClient } from "@/services/stripe/stripeServer"
 
 
 export async function refundPurchasesAction(id: string) {
