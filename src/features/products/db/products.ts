@@ -6,6 +6,7 @@ import { revalidateProductCache } from "./cache/products"
 import { CourseProductTable } from "@/drizzle/schema/courseProduct"
 import { cacheTag } from "next/dist/server/use-cache/cache-tag"
 import { PurchaseTable } from "@/drizzle/schema"
+import { getPurchaseUserTag } from "@/features/purchases/db/cache/purchases"
 
 export async function insertProduct(data: typeof ProductTable.$inferInsert & { courseIds: string[] }) {
   const newProduct = await db.transaction(async trx => {
@@ -78,7 +79,7 @@ export async function userOwnsProduct({
   productId: string,
 }) {
   "use cache"
-  // cacheTag(getPurchaseUserTag(userId))
+  cacheTag(getPurchaseUserTag(userId))
   
   const existingPurchase = await db.query.PurchaseTable.findFirst({
     where: and(
@@ -88,6 +89,5 @@ export async function userOwnsProduct({
     ),
   })
 
-  return existingPurchase != null
-    
+  return existingPurchase != null  
 }
