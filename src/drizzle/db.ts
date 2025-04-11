@@ -9,6 +9,8 @@ import { PostgresJsDatabase } from "drizzle-orm/postgres-js"
 
 let db: PostgresJsDatabase<typeof schema>
 
+console.info("env", process.env)
+
 if (!env.VERCEL) {  
   console.log("Using local database")
 
