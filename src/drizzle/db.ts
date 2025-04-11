@@ -9,11 +9,9 @@ import { PostgresJsDatabase } from "drizzle-orm/postgres-js"
 
 let db: PostgresJsDatabase<typeof schema>
 
-if (env.VERCEL) {
-  console.log("Using neon database", process.env.VERCEL)
-  db = drizzleNeon(neon(env.DATABASE_URL), { schema })
+console.info("env", process.env)
 
-} else {
+if (!env.VERCEL) {  
   console.log("Using local database")
 
   db = drizzle({
@@ -25,6 +23,9 @@ if (env.VERCEL) {
     host: env.DB_HOST,
   },
 })
+} else {
+  console.log("Using neon database")
+  db = drizzleNeon(neon(env.DATABASE_URL), { schema })
 }
 
 export { db }
