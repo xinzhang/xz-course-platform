@@ -8,7 +8,15 @@ const nextConfig: NextConfig = {
         hostname: "placehold.co",
       },
     ],
-  },  
+  },
+  /* config options here */
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    })
+    return config
+  },
   experimental: {
     dynamicIO: true,
     authInterrupts: true,

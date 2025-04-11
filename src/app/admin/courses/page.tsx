@@ -1,6 +1,3 @@
-// /app/admin/courses/page.tsx
-export const dynamic = "force-dynamic";
-
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/PageHeader";
 import Link from "next/link";
