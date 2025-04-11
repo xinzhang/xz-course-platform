@@ -11,7 +11,7 @@ let db: PostgresJsDatabase<typeof schema>
 
 console.info("env", env)
 
-if (env.VERCEL) {
+if (!env.LOCALDEV) {
   console.log("Using neon database", process.env.VERCEL)
   db = drizzleNeon(neon(env.DATABASE_URL), { schema })
 

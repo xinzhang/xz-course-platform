@@ -22,6 +22,10 @@ export const env = createEnv({
       (val) => val === "true",
       z.boolean()
     ),
+    LOCALDEV: z.preprocess(
+      (val) => val === "true",
+      z.boolean()
+    ),
   },
   experimental__runtimeEnv: process.env,
 })
