@@ -9,6 +9,7 @@
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:migrate:neon": "drizzle-kit migrate --config neon.config.ts",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
