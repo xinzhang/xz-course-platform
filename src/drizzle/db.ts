@@ -1,8 +1,20 @@
 import { env } from "@/data/env/server"
 import { drizzle } from "drizzle-orm/node-postgres"
+import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
+
 import * as schema from "./schema"
 
-export const db = drizzle({
+let db
+
+if (env.VERCEL) {
+  console.log("Using neon database", process.env.VERCEL)
+  db = drizzleNeon(neon(env.DATABASE_URL), { schema })
+
+} else {
+  console.log("Using local database")
+
+  db = drizzle({
   schema,
   connection: {
     password: env.DB_PASSWORD,
@@ -11,3 +23,6 @@ export const db = drizzle({
     host: env.DB_HOST,
   },
 })
+}
+
+export { db }

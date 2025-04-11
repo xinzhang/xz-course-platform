@@ -12,6 +12,7 @@ const client = await clerkClient()
 export async function getCurrentUser({ allData = false } = {}) {
   const { userId, sessionClaims, redirectToSignIn } = await auth()
 
+  // edge case where user is logged in but not synced to db
   if (userId != null && sessionClaims.dbId == null) {
     redirect("/api/clerk/syncUsers")
   }

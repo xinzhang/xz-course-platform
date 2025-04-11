@@ -17,6 +17,11 @@ export const env = createEnv({
     STRIPE_PPP_20_COUPON_ID: z.string().min(1),
     STRIPE_SECRET_KEY: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    DATABASE_URL: z.string().min(1),
+    VERCEL: z.preprocess(
+      (val) => val === "true",
+      z.boolean()
+    ),
   },
   experimental__runtimeEnv: process.env,
 })
