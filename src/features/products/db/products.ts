@@ -1,6 +1,6 @@
 import { db } from "@/drizzle/db"
 
-import { ProductStatus, ProductTable } from "@/drizzle/schema/product"
+import { ProductTable } from "@/drizzle/schema/product"
 import { and, eq, isNull } from "drizzle-orm"
 import { revalidateProductCache } from "./cache/products"
 import { CourseProductTable } from "@/drizzle/schema/courseProduct"

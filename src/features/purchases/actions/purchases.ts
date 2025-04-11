@@ -23,7 +23,7 @@ export async function refundPurchasesAction(id: string) {
       trx
     )
 
-    const session = stripeServerClient.checkout.sessions.retrieve(
+    const session = await stripeServerClient.checkout.sessions.retrieve(
       refundedPurchase.stripeSessionId
     )
 

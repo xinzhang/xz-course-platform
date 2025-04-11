@@ -1,10 +1,10 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import arcjet, { detectBot, shield, slidingWindow } from "@arcjet/next"
+// import arcjet, { detectBot, shield, slidingWindow } from "@arcjet/next"
 import { createRouteMatcher } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 // import { setUserCountryHeader } from "./lib/userCountryHeader";
 // import { NextResponse } from "next/server";
-import { env } from "./data/env/server";
+// import { env } from "./data/env/server";
 
 const isPublicRoute = createRouteMatcher([
   '/',
@@ -18,21 +18,21 @@ const isPublicRoute = createRouteMatcher([
 
 const isAdminRoute = createRouteMatcher(["/admin(.*)"])
 
-const aj = arcjet({
-  key: env.ARCJET_KEY,
-  rules: [
-    shield({ mode: "LIVE" }),
-    detectBot({
-      mode: "LIVE",
-      allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:MONITOR", "CATEGORY:PREVIEW"],
-    }),
-    slidingWindow({
-      mode: "LIVE",
-      interval: "1m",
-      max: 100,
-    }),
-  ],
-})
+// const aj = arcjet({
+//   key: env.ARCJET_KEY,
+//   rules: [
+//     shield({ mode: "LIVE" }),
+//     detectBot({
+//       mode: "LIVE",
+//       allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:MONITOR", "CATEGORY:PREVIEW"],
+//     }),
+//     slidingWindow({
+//       mode: "LIVE",
+//       interval: "1m",
+//       max: 100,
+//     }),
+//   ],
+// })
 
 export default clerkMiddleware(async (auth, req)=> {
   // const decision = await aj.protect(

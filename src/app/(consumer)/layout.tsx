@@ -1,7 +1,6 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/services/clerk";
 import { canAccessAdminPages } from "@/permissions/general";
@@ -25,7 +24,7 @@ function Navbar() {
       <nav className='flex gap-4 container'>
         <Link className='mr-auto text-lg flex items-center px-2' href='/'>
           <Image
-            src={logo}
+            src='/logo.svg'
             width={20}
             height={20}
             alt='xz courses platform demo'

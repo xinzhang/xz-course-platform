@@ -5,7 +5,9 @@ import { neon } from "@neondatabase/serverless";
 
 import * as schema from "./schema"
 
-let db
+import { PostgresJsDatabase } from "drizzle-orm/postgres-js"
+
+let db: PostgresJsDatabase<typeof schema>
 
 if (env.VERCEL) {
   console.log("Using neon database", process.env.VERCEL)

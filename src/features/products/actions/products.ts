@@ -5,6 +5,7 @@ import { canCreateProducts, canDeleteProducts, canUpdateProducts } from "../perm
 import { deleteProduct, insertProduct, updateProduct } from "../db/products"
 import { productSchema } from "../schemas/productSchema"
 import { redirect } from "next/navigation"
+import { z } from "zod"
 
 export async function deleteProductAction(id: string) {  
   if (!canDeleteProducts(await getCurrentUser())) {
