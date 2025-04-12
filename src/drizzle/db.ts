@@ -1,7 +1,6 @@
 import { env } from "@/data/env/server"
 import { drizzle } from "drizzle-orm/node-postgres"
-import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
-import { neon } from "@neondatabase/serverless";
+import { Pool } from 'pg';
 
 import * as schema from "./schema"
 
@@ -9,11 +8,12 @@ import { PostgresJsDatabase } from "drizzle-orm/postgres-js"
 
 let db: PostgresJsDatabase<typeof schema>
 
-console.info("env", env)
-
 if (!env.LOCALDEV) {
   console.log("Using neon database", process.env.VERCEL)
-  db = drizzleNeon(neon(env.DATABASE_URL), { schema })
+  const pool = new Pool({
+    connectionString: env.DATABASE_URL,
+  });
+  db = drizzle(pool, { schema })
 
 } else {
   console.log("Using local database")
