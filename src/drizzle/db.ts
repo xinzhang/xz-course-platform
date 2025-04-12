@@ -8,6 +8,8 @@ import { PostgresJsDatabase } from "drizzle-orm/postgres-js"
 
 let db: PostgresJsDatabase<typeof schema>
 
+console.info("env", env.DATABASE_URL)
+
 if (!env.LOCALDEV) {
   console.log("Using neon database", process.env.VERCEL)
   const pool = new Pool({
