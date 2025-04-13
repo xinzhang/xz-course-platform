@@ -13,7 +13,8 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Debug check secret
-      run: echo "Secret length: ${#GCP_SA_KEY}"
+      run: |
+        echo "Secret length: ${#GCP_SA_KEY}"
       env:
         GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
