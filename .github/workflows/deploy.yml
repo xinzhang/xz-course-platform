@@ -1,8 +1,7 @@
 name: Deploy to Cloud Run
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch
 
 jobs:
   deploy:
@@ -11,6 +10,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: run docker build
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        file: Dockerfile
+        tags: gcr.io/xz-share/my-course-platform:latest
 
     - name: Debug check secret
       run: |
@@ -25,12 +32,23 @@ jobs:
 
     - name: Set up gcloud CLI
       uses: google-github-actions/setup-gcloud@v1
+    
+    - name: push to cloud run
+        
+      run: |
+        docker build -t gcr.io/xz-share/my-course-platform:latest . --platform linux/amd64
+        docker push gcr.io/xz-share/my-course-platform:latest
+        gcloud artifacts repositories create my-course-platform \
+          --repository-format=docker \
+          --location=australia-southeast1 \
+          --description="My Course platform"
+
 
     - name: Deploy to Cloud Run
       run: |
-        gcloud run deploy my-course-playform \
+        gcloud run deploy my-course-platform \
           --project=xz-share \
-          --region=australia-southeast1-a \
+          --region=australia-southeast1 \
           --source=. \
           --platform=managed \
           --allow-unauthenticated

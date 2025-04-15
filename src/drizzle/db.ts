@@ -11,14 +11,14 @@ let db: PostgresJsDatabase<typeof schema>
 console.info("env", env.DATABASE_URL)
 
 if (!env.LOCALDEV) {
-  console.log("Using neon database", process.env.VERCEL)
+  console.log("Using cloud database", process.env.VERCEL)
   const pool = new Pool({
     connectionString: env.DATABASE_URL,
   });
   db = drizzle(pool, { schema })
 
 } else {
-  console.log("Using local database")
+  console.log("Using local database", env.DB_HOST)
 
   db = drizzle({
   schema,

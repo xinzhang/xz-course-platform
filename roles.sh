@@ -23,3 +23,11 @@ gcloud iam service-accounts keys create key.json \
 # create json key
 gcloud iam service-accounts keys create key.json \
   --iam-account=github-actions-deployer@xz-share.iam.gserviceaccount.com
+
+gcloud projects add-iam-policy-binding xz-share \
+  --member="serviceAccount:github-actions-deployer@xz-share.iam.gserviceaccount.com" \
+  --role="roles/artifactregistry.admin"
+
+gcloud projects add-iam-policy-binding xz-share \
+  --member="serviceAccount:github-actions-deployer@xz-share.iam.gserviceaccount.com" \
+  --role="roles/cloudbuild.builds.editor"
