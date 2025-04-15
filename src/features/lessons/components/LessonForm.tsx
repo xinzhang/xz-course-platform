@@ -70,7 +70,6 @@ export default function LessonForm({
     if (!data.error) onSuccess?.();
   }
   const videoId = form.watch("youtubeVideoId")
-  console.log(videoId)
 
   return (
     <Form {...form}>

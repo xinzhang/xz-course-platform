@@ -3,10 +3,10 @@
 import { CheckCircle2Icon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { VideoIcon } from "lucide-react"
-import { Link } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useParams } from "next/navigation"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Link from "next/link"
 
 export function CoursePageClient({
   course,

@@ -54,6 +54,7 @@ async function getCourse(id: string) {
     getLessonCourseTag(id)
   );
 
+  console.log('[consumer] courses: get course', id);
   return db.query.CourseTable.findFirst({
     where: eq(CourseTable.id, id),
     columns: { id: true, name: true },
