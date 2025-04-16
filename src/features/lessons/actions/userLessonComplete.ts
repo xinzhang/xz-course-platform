@@ -1,5 +1,7 @@
+'use server'
 import { getCurrentUser } from "@/services/clerk"
 import { canUpdateUserLessonCompleteStatus } from "../permissions/userLessonComplete"
+import { updateLessonCompleteStatus } from "../db/userLessonComplete"
 
 export async function updateLessonCompleteStatusAction(
   lessonId: string,
