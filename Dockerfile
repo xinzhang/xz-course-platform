@@ -13,6 +13,8 @@ RUN npm install --force
 # 复制源代码
 COPY . .
 
+RUN cat env.template
+
 # 构建应用
 RUN npm run build
 

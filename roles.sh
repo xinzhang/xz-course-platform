@@ -31,3 +31,7 @@ gcloud projects add-iam-policy-binding xz-share \
 gcloud projects add-iam-policy-binding xz-share \
   --member="serviceAccount:github-actions-deployer@xz-share.iam.gserviceaccount.com" \
   --role="roles/cloudbuild.builds.editor"
+
+gcloud projects add-iam-policy-binding xz-share \
+  --member="serviceAccount:github-actions-deployer@xz-share.iam.gserviceaccount.com" \
+  --role="roles/artifactregistry.repositories.admin"
