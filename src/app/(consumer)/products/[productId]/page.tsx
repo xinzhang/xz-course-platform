@@ -206,7 +206,6 @@ async function getPublicProduct(id: string) {
   });
 
   if (product == null) return null;
-  console.log('[consumer] products: result', product.courseProducts[0].course.courseSections[0].lessons);
 
   cacheTag(
     ...product.courseProducts.flatMap((cp) => [
