@@ -8,7 +8,7 @@ import { revokeUserCourseAccess } from "@/features/courses/db/userCourseAccess"
 import { stripeServerClient } from "@/services/stripe/stripeServer"
 
 
-export async function refundPurchasesAction(id: string) {
+export async function refundPurchaseAction(id: string) {
   if (!canRefundPurchases(await getCurrentUser())) {
     return {
       error: true,
