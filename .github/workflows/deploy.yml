@@ -11,14 +11,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # - name: run docker build
-    #   uses: docker/build-push-action@v3
-    #   with:
-    #     context: .
-    #     push: true
-    #     file: Dockerfile.dev
-    #     tags: gcr.io/xz-share/my-course-platform:latest
-
     - name: Debug check secret
       run: |
         echo "Secret length: ${#GCP_SA_KEY}"
@@ -39,11 +31,11 @@ jobs:
         gcloud auth configure-docker --quiet
         docker push gcr.io/xz-share/my-course-platform:latest
 
-    - name: Deploy to Cloud Run
-      run: |
-        gcloud run deploy my-course-platform \
-          --project=xz-share \
-          --region=australia-southeast1 \
-          --image gcr.io/xz-share/my-course-platform:latest \
-          --platform=managed \
-          --allow-unauthenticated
+    # - name: Deploy to Cloud Run
+    #   run: |
+    #     gcloud run deploy my-course-platform \
+    #       --project=xz-share \
+    #       --region=australia-southeast1 \
+    #       --image gcr.io/xz-share/my-course-platform:latest \
+    #       --platform=managed \
+    #       --allow-unauthenticated
