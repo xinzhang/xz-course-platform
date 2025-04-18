@@ -29,7 +29,6 @@ export function ProductCard({
           <Suspense fallback={formatPrice(priceInDollars)}>
             <Price price={priceInDollars} />
           </Suspense>
-          {description}
         </CardDescription>
         <CardTitle className="text-xl">{name}</CardTitle>
       </CardHeader>
