@@ -4,6 +4,9 @@ FROM node:20 AS builder
 # 设置工作目录
 WORKDIR /app
 
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
 # 复制 package.json 和 package-lock.json
 COPY package*.json ./
 
@@ -12,8 +15,7 @@ RUN npm install --force
 
 # 复制源代码
 COPY . .
-
-RUN cat env.template
+COPY env.template .env
 
 # 构建应用
 RUN npm run build

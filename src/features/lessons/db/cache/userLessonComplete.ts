@@ -1,4 +1,4 @@
-import { getCourseTag, getGlobalTag, getIdTag, getUserTag } from "@/lib/dataCache"
+import { getGlobalTag, getIdTag, getUserTag } from "@/lib/dataCache"
 import { revalidateTag } from "next/cache"
 
 export function getUserLessonCompleteGlobalTag() {
