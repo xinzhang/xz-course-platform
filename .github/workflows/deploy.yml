@@ -32,11 +32,11 @@ jobs:
         gcloud auth configure-docker --quiet
         docker push gcr.io/xz-share/my-course-platform:latest
 
-    # - name: Deploy to Cloud Run
-    #   run: |
-    #     gcloud run deploy my-course-platform \
-    #       --project=xz-share \
-    #       --region=australia-southeast1 \
-    #       --image gcr.io/xz-share/my-course-platform:latest \
-    #       --platform=managed \
-    #       --allow-unauthenticated
+    - name: Deploy to Cloud Run
+      run: |
+        gcloud run deploy my-course-platform \
+          --project=xz-share \
+          --region=australia-southeast1 \
+          --image gcr.io/xz-share/my-course-platform:latest \
+          --platform=managed \
+          --allow-unauthenticated
