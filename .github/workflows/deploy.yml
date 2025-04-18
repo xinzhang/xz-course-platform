@@ -27,7 +27,8 @@ jobs:
     
     - name: push to cloud run        
       run: |
-        docker build -t gcr.io/xz-share/my-course-platform:latest -f Dockerfile . --platform linux/amd64
+        echo "DATABASE_URL: ${{ secrets.GCP_SA_KEY }}"
+        docker build -t gcr.io/xz-share/my-course-platform:latest --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} -f Dockerfile . --platform linux/amd64
         gcloud auth configure-docker --quiet
         docker push gcr.io/xz-share/my-course-platform:latest
 
