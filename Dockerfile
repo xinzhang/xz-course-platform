@@ -17,6 +17,8 @@ RUN npm install --force
 COPY . .
 COPY env.template .env
 
+RUN echo "DATABASE_URL: ${DATABASE_URL}"
+
 # 构建应用
 RUN npm run build
 
